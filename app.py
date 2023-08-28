@@ -17,9 +17,9 @@ load_dotenv()
 st.set_page_config(page_title="Open AI Chat Assistant", layout="wide")
 st.subheader("Open AI Chat Assistant: Life Enhancing with AI!")
 
-css_file = "main.css"
-with open(css_file) as f:
-    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+#css_file = "main.css"
+#with open(css_file) as f:
+    #st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
 
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
 #HUGGINGFACEHUB_API_TOKEN = os.environ.get('HUGGINGFACEHUB_API_TOKEN')
