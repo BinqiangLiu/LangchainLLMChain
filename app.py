@@ -1,11 +1,9 @@
 import streamlit as st
-from langchain import PromptTemplate, OpenAI, LLMChain
+from langchain import PromptTemplate, LLMChain
 from langchain.memory import StreamlitChatMessageHistory
-import openai
 from streamlit_chat import message
 import numpy as np
 from langchain.chains import LLMChain
-from langchain.llms import OpenAI
 from langchain.prompts import PromptTemplate
 from langchain.memory import ConversationBufferMemory
 from langchain.memory.chat_message_histories import StreamlitChatMessageHistory
