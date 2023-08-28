@@ -34,7 +34,7 @@ llm = HuggingFaceHub(repo_id=repo_id,
                                    "top_p":0.95, "eos_token_id":49155})
 
 user_query = st.text_input("Enter your query here:")
-if if user_query != "":
+if user_query != "":
     prompt_template = "{user_query}"
     llm_chain = LLMChain(
         llm=llm,
