@@ -44,8 +44,8 @@ llm_chain = LLMChain(
 print("------Your entry:"+user_query+"------")
 print()
 
-response_1=llm_chain(user_query)
-print(response_1)
+#response_1=llm_chain(user_query)
+#print(response_1)
 
 response=llm_chain.run(user_query)
 print(response)
