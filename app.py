@@ -34,36 +34,29 @@ llm = HuggingFaceHub(repo_id=repo_id,
                                    "top_p":0.95, "eos_token_id":49155})
 
 user_query = st.text_input("Enter your query here:")
-prompt_template = "{user_query}"
-
-llm_chain = LLMChain(
-    llm=llm,
-    prompt=PromptTemplate.from_template(prompt_template)
-)
-
-response=llm_chain.run(user_query)
-print(response)
-
-temp_ai_response=response
-final_ai_response=temp_ai_response.partition('<|end|>\n<|user|>\n')[0]
-print(final_ai_response)
-
-i_final_ai_response=final_ai_response.replace('<|end|>\n<|assistant|>\n', '') 
-ii_final_ai_response=i_final_ai_response.replace('<|end|>\n<|system|>\n', '') 
-print(i_final_ai_response)
-print(ii_final_ai_response)
-
-i_unique_responses = set(i_final_ai_response.split('\n'))
-output_i_unique_responses = sorted(list(i_unique_responses), key=response.index)
-
-ii_unique_responses = set(ii_final_ai_response.split('\n'))
-output_ii_unique_responses = sorted(list(ii_unique_responses), key=response.index)
-
-for item in output_i_unique_responses:
-    print(item)
-
-for item in output_ii_unique_responses:
-    st.write(item)
-    print(item)
+if uer_qyery:
+    prompt_template = "{user_query}"
+    llm_chain = LLMChain(
+        llm=llm,
+        prompt=PromptTemplate.from_template(prompt_template)
+    )
+    response=llm_chain.run(user_query)
+    print(response)
+    temp_ai_response=response
+    final_ai_response=temp_ai_response.partition('<|end|>\n<|user|>\n')[0]
+    print(final_ai_response)
+    i_final_ai_response=final_ai_response.replace('<|end|>\n<|assistant|>\n', '') 
+    ii_final_ai_response=i_final_ai_response.replace('<|end|>\n<|system|>\n', '') 
+    print(i_final_ai_response)
+    print(ii_final_ai_response)
+    i_unique_responses = set(i_final_ai_response.split('\n'))
+    output_i_unique_responses = sorted(list(i_unique_responses), key=response.index)
+    ii_unique_responses = set(ii_final_ai_response.split('\n'))
+    output_ii_unique_responses = sorted(list(ii_unique_responses), key=response.index)
+    for item in output_i_unique_responses:
+        print(item)
+    for item in output_ii_unique_responses:
+        st.write(item)
+        print(item)
 
 
