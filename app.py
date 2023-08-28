@@ -41,12 +41,6 @@ llm_chain = LLMChain(
     prompt=PromptTemplate.from_template(prompt_template)
 )
 
-print("------Your entry:"+user_query+"------")
-print()
-
-#response_1=llm_chain(user_query)
-#print(response_1)
-
 response=llm_chain.run(user_query)
 print(response)
 
