@@ -16,8 +16,17 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-os.environ['HUGGINGFACEHUB_API_TOKEN'] = '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'
-HUGGINGFACEHUB_API_TOKEN = os.environ.get('HUGGINGFACEHUB_API_TOKEN')
+st.set_page_config(page_title="Open AI Chat Assistant", layout="wide")
+st.subheader("Open AI Chat Assistant: Life Enhancing with AI!")
+
+css_file = "main.css"
+with open(css_file) as f:
+    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+
+HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
+#HUGGINGFACEHUB_API_TOKEN = os.environ.get('HUGGINGFACEHUB_API_TOKEN')
+repo_id = os.environ.get('repo_id')
+
 repo_id="HuggingFaceH4/starchat-beta"
 llm = HuggingFaceHub(repo_id=repo_id,
                      model_kwargs={"min_length":100,
@@ -26,7 +35,7 @@ llm = HuggingFaceHub(repo_id=repo_id,
                                    "top_k":50,
                                    "top_p":0.95, "eos_token_id":49155})
 
-user_query= input("Enter your query:")
+user_query = st.text_input("Enter your query here:")
 prompt_template = "{user_query}"
 
 llm_chain = LLMChain(
@@ -62,6 +71,7 @@ for item in output_i_unique_responses:
     print(item)
 
 for item in output_ii_unique_responses:
+    st.write(item)
     print(item)
 
 
