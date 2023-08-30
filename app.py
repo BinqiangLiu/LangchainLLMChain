@@ -17,9 +17,9 @@ load_dotenv()
 st.set_page_config(page_title="Open AI Chat Assistant", layout="wide")
 st.subheader("Open AI Chat Assistant: Life Enhancing with AI!")
 
-#css_file = "main.css"
-#with open(css_file) as f:
-    #st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+css_file = "main.css"
+with open(css_file) as f:
+    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
 
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
 #HUGGINGFACEHUB_API_TOKEN = os.environ.get('HUGGINGFACEHUB_API_TOKEN')
@@ -35,28 +35,17 @@ llm = HuggingFaceHub(repo_id=repo_id,
 
 user_query = st.text_input("Enter your query here:")
 if user_query != "":
-    prompt_template = "{user_query}"
+    prompt_template = "You are a helpful AI assistant. Please reponse to {user_query} in details and in a good manner."    
     llm_chain = LLMChain(
         llm=llm,
         prompt=PromptTemplate.from_template(prompt_template)
     )
-    response=llm_chain.run(user_query)
-    print(response)
-    temp_ai_response=response
-    final_ai_response=temp_ai_response.partition('<|end|>\n<|user|>\n')[0]
-    print(final_ai_response)
-    i_final_ai_response=final_ai_response.replace('<|end|>\n<|assistant|>\n', '') 
-    ii_final_ai_response=i_final_ai_response.replace('<|end|>\n<|system|>\n', '') 
-    print(i_final_ai_response)
-    print(ii_final_ai_response)
-    i_unique_responses = set(i_final_ai_response.split('\n'))
-    output_i_unique_responses = sorted(list(i_unique_responses), key=response.index)
-    ii_unique_responses = set(ii_final_ai_response.split('\n'))
-    output_ii_unique_responses = sorted(list(ii_unique_responses), key=response.index)
-    for item in output_i_unique_responses:
-        print(item)
-    for item in output_ii_unique_responses:
-        st.write(item)
-        print(item)
+    initial_response=llm_chain.run(user_query)
+    temp_ai_response_1=initial_response.partition('<|end|>\n<|user|>\n')[0]
+    temp_ai_response_2=temp_ai_response_1.replace('<|end|>\n<|assistant|>\n', '') 
+    final_ai_response=temp_ai_response_2.replace('<|end|>\n<|system|>\n', '') 
+    print("final_ai_response"+final_ai_response)
+    st.write("AI Response:\n"+final_ai_response)
+    
 
 
