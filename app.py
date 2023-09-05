@@ -46,7 +46,6 @@ with st.spinner("AI Thinking...Please wait a while to Cheers!"):
         initial_response=llm_chain.run(user_query)
         temp_ai_response_1=initial_response.partition('<|end|>\n<|user|>\n')[0]
         temp_ai_response_2=temp_ai_response_1.replace('<|end|>\n<|assistant|>\n', '') 
-        final_ai_response=temp_ai_response_2.replace('<|end|>\n<|system|>\n', '') 
-        print("final_ai_response:\n"+final_ai_response)
+        final_ai_response=temp_ai_response_2.replace('<|end|>\n<|system|>\n', '')         
         st.write("AI Response:")
         st.write(final_ai_response)
