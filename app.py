@@ -33,11 +33,10 @@ llm = HuggingFaceHub(repo_id=repo_id,
                                    "top_k":50,
                                    "top_p":0.95, "eos_token_id":49155})
 
-prompt_template = """You are a very helpful AI assistant. Please response to the user's input question with as many details as possible. However, if you really don't know the answer, just say that you don't know. DON'T try to make up an answer becauase hallicunation is NO GOOD :)
+prompt_template = """You are a very helpful AI assistant. Please response to the user's input question with as many details as possible.
 Question: {user_question}
 Helpufl AI AI Repsonse:
-"""
-  
+"""  
 llm_chain = LLMChain(llm=llm, prompt=PromptTemplate.from_template(prompt_template))
 
 user_query = st.text_input("Enter your query here:")
