@@ -22,10 +22,8 @@ with open(css_file) as f:
     st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
 
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
-#HUGGINGFACEHUB_API_TOKEN = os.environ.get('HUGGINGFACEHUB_API_TOKEN')
 repo_id = os.environ.get('repo_id')
 
-repo_id="HuggingFaceH4/starchat-beta"
 llm = HuggingFaceHub(repo_id=repo_id,
                      model_kwargs={"min_length":100,
                                    "max_new_tokens":1024, "do_sample":True,
