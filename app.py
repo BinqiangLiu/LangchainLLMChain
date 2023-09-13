@@ -38,8 +38,8 @@ Helpufl AI AI Repsonse:
 llm_chain = LLMChain(llm=llm, prompt=PromptTemplate.from_template(prompt_template))
 
 user_query = st.text_input("Enter your query here:")
-with st.spinner("AI Thinking...Please wait a while to Cheers!"):
-    if user_query != "":
+with st.spinner("AI Thinking...Please wait a while to Cheers!"):    
+    if user_query !="" and not user_query.strip().isspace() and not user_query == "" and not user_query.strip() == "" and not user_query.isspace():         
         initial_response=llm_chain.run(user_query)
         temp_ai_response_1=initial_response.partition('<|end|>\n<|user|>\n')[0]
         temp_ai_response_2=temp_ai_response_1.replace('<|end|>\n<|assistant|>\n', '') 
