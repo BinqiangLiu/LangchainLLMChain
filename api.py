@@ -17,8 +17,8 @@ load_dotenv()
 app = Flask(__name__)
 
 # 初始化Chatbot
-HUGGINGFACEHUB_API_TOKEN = "YOUR_HUGGINGFACEHUB_API_TOKEN"  # 替换为您的Hugging Face Hub API令牌
-repo_id = "YOUR_REPO_ID"  # 替换为您的Hugging Face Hub存储库ID
+HUGGINGFACEHUB_API_TOKEN = "HUGGINGFACEHUB_API_TOKEN"  # 替换为您的Hugging Face Hub API令牌
+repo_id = "repo_id"  # 替换为您的Hugging Face Hub存储库ID
 port = os.getenv('port')
 
 llm = HuggingFaceHub(repo_id=repo_id,
