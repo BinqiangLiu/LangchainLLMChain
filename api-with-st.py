@@ -20,6 +20,7 @@ app = Flask(__name__)
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
 repo_id = os.environ.get('repo_id')
 port = os.getenv('port')
+host = os.getenv('host')
 
 llm = HuggingFaceHub(repo_id=repo_id,
                      model_kwargs={"min_length":1024,
@@ -53,5 +54,5 @@ def chat():
     return jsonify({'response': initial_response})
 
 if __name__ == '__main__':    
-    app.run(host='0.0.0.0', port=port)
+    app.run(host=host, port=port)
 #with API and ST interface together
