@@ -12,6 +12,7 @@ from streamlit.components.v1 import html
 from langchain import HuggingFaceHub
 import os
 from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
 
