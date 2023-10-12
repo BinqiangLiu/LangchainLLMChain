@@ -17,8 +17,8 @@ load_dotenv()
 app = Flask(__name__)
 
 # 初始化Chatbot
-HUGGINGFACEHUB_API_TOKEN = "HUGGINGFACEHUB_API_TOKEN"  # 替换为您的Hugging Face Hub API令牌
-repo_id = "repo_id"  # 替换为您的Hugging Face Hub存储库ID
+HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
+repo_id = os.environ.get('repo_id')
 port = os.getenv('port')
 
 llm = HuggingFaceHub(repo_id=repo_id,
@@ -26,8 +26,7 @@ llm = HuggingFaceHub(repo_id=repo_id,
                                    "max_new_tokens":5632, "do_sample":True,
                                    "temperature":0.1,
                                    "top_k":50,
-                                   "top_p":0.95, "eos_token_id":49155},
-                     api_token=HUGGINGFACEHUB_API_TOKEN)
+                                   "top_p":0.95, "eos_token_id":49155}) 
 
 prompt_template = """You are a very helpful AI assistant. Please response to the user's input question with as many details as possible.
 Question: {user_question}
