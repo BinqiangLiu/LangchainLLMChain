@@ -1,4 +1,5 @@
-huggingface_hub>=0.16.4
+huggingface_hub
+#huggingface_hub>=0.16.4
 langchain
 python-dotenv
 Requests
@@ -6,3 +7,8 @@ streamlit
 streamlit_chat
 flask
 gunicorn
+altair
+streamlit_extras
+uvicorn
+#gunicorn py_file_name:api_name
+#uvicorn py_file_name:api_name
