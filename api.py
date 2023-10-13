@@ -14,7 +14,12 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-app = Flask(__name__)
+st.set_page_config(page_title="AI Chatbot 100% Free", layout="wide")
+st.write('完全开源免费的AI智能聊天助手 | Absolute Free & Opensouce AI Chatbot')
+
+css_file = "main.css"
+with open(css_file) as f:
+    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
 
 # 初始化Chatbot
 HUGGINGFACEHUB_API_TOKEN = os.getenv('HUGGINGFACEHUB_API_TOKEN')
@@ -43,13 +48,17 @@ assistant:
 
 llm_chain = LLMChain(llm=llm, prompt=PromptTemplate.from_template(prompt_template))
 
+temp_user_query = st.chat_input("Enter your question here.")
+
 # 定义API端点
+app = Flask(__name__)
 @app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.get_json()
     #user_query = data['query']
 #此处的['query']中的query可以自定义名称，例如修改为user_question，那么调用API的代码中，需要相应的使用data = {'user_question': user_query}，user_question需一致
-    user_query = data['user_question']
+    user_query = data['user_question']      
+    temp_user_query=user_query
     # 调用Chatbot
     initial_response = llm_chain.run(user_query)
     st.write("AI Response")
