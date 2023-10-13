@@ -38,8 +38,9 @@ llm_chain = LLMChain(llm=llm, prompt=PromptTemplate.from_template(prompt_templat
 @app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.get_json()
-    user_query = data['query']
-
+    #user_query = data['query']
+#此处的['query']中的query可以自定义名称，例如修改为user_question，那么调用API的代码中，需要相应的使用data = {'user_question': user_query}，user_question需一致
+    user_query = data['user_question']
     # 调用Chatbot
     initial_response = llm_chain.run(user_query)
 
