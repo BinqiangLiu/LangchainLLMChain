@@ -28,10 +28,19 @@ llm = HuggingFaceHub(repo_id=repo_id,
                                    "top_k":50,
                                    "top_p":0.95, "eos_token_id":49155}) 
 
-prompt_template = """You are a very helpful AI assistant. Please response to the user's input question with as many details as possible.
-Question: {user_question}
-Helpful AI Repsonse:
-"""  
+#prompt_template = """You are a very helpful AI assistant. Please response to the user's input question with as many details as possible.
+#Question: {user_question}
+#Helpful AI Repsonse:
+#"""
+
+prompt_template = """
+<<SYS>>You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe.  Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.
+If a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.
+In each conversation, question is placed after [INST] while your answer should be placed after [/INST].<</SYS>>
+[INST] {user_question} [/INST]
+assistant:
+"""
+
 llm_chain = LLMChain(llm=llm, prompt=PromptTemplate.from_template(prompt_template))
 
 # 定义API端点
