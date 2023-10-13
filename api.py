@@ -52,7 +52,8 @@ def chat():
     user_query = data['user_question']
     # 调用Chatbot
     initial_response = llm_chain.run(user_query)
-
+    st.write("AI Response")
+    st.write(initial_response)
     return jsonify({'response': initial_response})
 
 if __name__ == '__main__':    
