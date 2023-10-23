@@ -46,7 +46,7 @@ with st.spinner("AI Thinking...Please wait a while to Cheers!"):
 @app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.get_json()
-    user_query = data['query']
+    user_query = data['user_question']
 
     # 调用Chatbot
     initial_response = llm_chain.run(user_query)
